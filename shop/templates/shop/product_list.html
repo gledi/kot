@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Products - {{ block.super }}{% endblock title %}
+{% block content %}
+    <h1>Products on Sale</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}{{ product.get_currency_display }}</td>
+                <td>
+                    <form method="post" action="{% url 'add_to_cart' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ product.pk }}">
+                        <button type="submit">+</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No products have been added yet!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

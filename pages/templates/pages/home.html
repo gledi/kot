@@ -1,20 +1,5 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load i18n %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% translate "Our Page" %}</title>
-</head>
-<body>
-    <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'about' %}">About Us</a></li>
-        <li><a href="{% url 'contact' %}">Contact Us</a></li>
-        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
-        <li><a href="{% url 'jobs' %}">Work for Us</a></li>
-    </ul>
-    <h1>{% translate "Stupid Page" %}</h1>
-</body>
-</html>
+{% block content %}
+<h1>{% translate "Homepage" %}</h1>
+{% endblock content %}
