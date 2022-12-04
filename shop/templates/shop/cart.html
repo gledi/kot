@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Cart Contents</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th colspan="4" style="text-align: right;">
+                <button id="btnCheckout" type="submit">Checkout</button>
+            </th>
+        </tr>
+    </tfoot>
+    <tbody>
+    {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.total }}</td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="4">No items added to cart yet!</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'main.js' %}"></script>
+{% endblock scripts %}
